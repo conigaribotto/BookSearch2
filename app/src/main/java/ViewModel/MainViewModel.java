@@ -1,23 +1,26 @@
 package ViewModel;
 
 import android.app.Application;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
 import Model.Libro;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
 
-    private final MutableLiveData<Libro> mutableLibro;
-    private final List<Libro> listaLibros;
+    private MutableLiveData<Libro> mutableLibro;
+    private List<Libro> listaLibros;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
 
-        mutableLibro = new MutableLiveData<>();
+        mutableLibro = new MutableLiveData<>(); // <- inicializado aquí
         listaLibros = new ArrayList<>();
 
         listaLibros.add(new Libro("Mujercitas", "Louisa May Alcott", "Ficción"));
@@ -30,21 +33,24 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void buscarLibro(String titulo) {
-        if (titulo == null || titulo.trim().isEmpty()) {
+        if (titulo == null) {
+            mutableLibro.setValue(null);
+            return;
+        }
+        String buscado = titulo.trim();
+        if (buscado.isEmpty()) {
             mutableLibro.setValue(null);
             return;
         }
 
-        String tituloNormalizado = titulo.trim().toLowerCase();
-
         for (Libro libro : listaLibros) {
-            String libroTitulo = libro.getTitulo().trim().toLowerCase();
-            if (libroTitulo.contains(tituloNormalizado)) {
+            // Igualdad completa (case-insensitive). Si quieres coincidencia parcial usa contains()
+            if (libro.getTitulo().equalsIgnoreCase(buscado)) {
                 mutableLibro.setValue(libro);
                 return;
             }
         }
-
+        // no encontrado
         mutableLibro.setValue(null);
     }
 }

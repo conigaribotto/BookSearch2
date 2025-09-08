@@ -3,6 +3,8 @@ package Model;
 import java.io.Serializable;
 
 public class Libro implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String titulo;
     private String autor;
     private String descripcion;
@@ -17,8 +19,7 @@ public class Libro implements Serializable {
     public String getAutor() { return autor; }
     public String getDescripcion() { return descripcion; }
 
-    @Override
-    public String toString() {
-        return titulo + " - " + autor;
-    }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public void setAutor(String autor) { this.autor = autor; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 }

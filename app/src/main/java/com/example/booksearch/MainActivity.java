@@ -2,10 +2,13 @@ package com.example.booksearch;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.booksearch.databinding.ActivityMainBinding;
+
 import ViewModel.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,22 +21,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         setContentView(binding.getRoot());
 
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-
-        binding.btnBuscar.setOnClickListener(v -> {
-            String titulo = binding.etBuscar.getText().toString();
-            viewModel.buscarLibro(titulo);
+        binding.btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String titulo = binding.etBuscar.getText().toString();
+                viewModel.buscarLibro(titulo);
+            }
         });
 
         viewModel.getMutableLibro().observe(this, libro -> {
             if (libro != null) {
-                Intent intent = new Intent(this, DetalleActivity.class);
-                intent.putExtra("libro", libro);
+                Intent intent = new Intent(MainActivity.this, DetalleActivity.class);
+                intent.putExtra("libro", libro); // ahora Libro es Serializable -> debería funcionar
                 startActivity(intent);
             } else {
-                Toast.makeText(this, "Libro no encontrado", Toast.LENGTH_SHORT).show();
+                binding.tvMensaje.setText("Libro no encontrado");
             }
         });
     }
