@@ -7,6 +7,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.booksearch.R;
+
 import Model.Libro;
 
 import java.util.ArrayList;
@@ -23,9 +25,10 @@ public class MainViewModel extends AndroidViewModel {
         mutableLibro = new MutableLiveData<>(); // <- inicializado aquí
         listaLibros = new ArrayList<>();
 
-        listaLibros.add(new Libro("Mujercitas", "Louisa May Alcott", "Ficción"));
-        listaLibros.add(new Libro("Cazadores de sombra", "Cassandra Clare", "Fantasía y Ciencia ficción"));
-        listaLibros.add(new Libro("El tiempo de las moscas", "Claudia Piñeiro", "Policial"));
+        listaLibros.add(new Libro("Mujercitas", "Louisa May Alcott", "Ficción", R.drawable.mujercitas));
+        listaLibros.add(new Libro("Cazadores de sombra", "Cassandra Clare", "Fantasía y Ciencia ficción", R.drawable.cazadores));
+        listaLibros.add(new Libro("El tiempo de las moscas", "Claudia Piñeiro", "Policial", R.drawable.moscas));
+
     }
 
     public LiveData<Libro> getMutableLibro() {

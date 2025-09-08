@@ -28,4 +28,13 @@
         android:layout_height="wrap_content"
         android:text="Descripción"
         android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/ivLibro"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Imagen del libro"
+        android:layout_marginBottom="16dp"/>
+
 </LinearLayout>
