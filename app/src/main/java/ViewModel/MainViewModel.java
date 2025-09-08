@@ -19,7 +19,7 @@ public class MainViewModel extends AndroidViewModel {
         listaLibros = new ArrayList<>();
         listaLibros.add(new Libro("Mujercitas", "Louisa May Alcott", "Ficcion"));
         listaLibros.add(new Libro("Cazadores de sombra", "Cassandra Clare", "Fantasia y Ciencia ficcion"));
-        listaLibros.add(new Libro("Cien años de soledad", "Gabriel García Márquez", "Realismo mágico"));
+        listaLibros.add(new Libro("El tiempo de las moscas", "Claudia Piñeiro", "Policial"));
     }
 
     public LiveData<Libro> getMutableLibro() {
