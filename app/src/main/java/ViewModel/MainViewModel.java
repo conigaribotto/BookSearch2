@@ -17,8 +17,8 @@ public class MainViewModel extends AndroidViewModel {
     public MainViewModel(@NonNull Application application) {
         super(application);
         listaLibros = new ArrayList<>();
-        listaLibros.add(new Libro("1984", "George Orwell", "Distopía clásica"));
-        listaLibros.add(new Libro("El Principito", "Antoine de Saint-Exupéry", "Cuento filosófico"));
+        listaLibros.add(new Libro("Mujercitas", "Louisa May Alcott", "Ficcion"));
+        listaLibros.add(new Libro("Cazadores de sombra", "Cassandra Clare", "Fantasia y Ciencia ficcion"));
         listaLibros.add(new Libro("Cien años de soledad", "Gabriel García Márquez", "Realismo mágico"));
     }
 
