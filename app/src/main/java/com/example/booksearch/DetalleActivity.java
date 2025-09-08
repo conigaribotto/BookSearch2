@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.booksearch.databinding.ActivityDetalleBinding;
 import ViewModel.DetalleViewModel;
+import Model.Libro;
 
 public class DetalleActivity extends AppCompatActivity {
 
@@ -15,10 +16,14 @@ public class DetalleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Inicializamos ViewBinding
         binding = ActivityDetalleBinding.inflate(getLayoutInflater());
-        viewModel = new ViewModelProvider(this).get(DetalleViewModel.class);
         setContentView(binding.getRoot());
 
+        // Inicializamos ViewModel
+        viewModel = new ViewModelProvider(this).get(DetalleViewModel.class);
+
+        // Observamos LiveData de forma segura
         viewModel.getMutableLibro().observe(this, libro -> {
             if (libro != null) {
                 binding.tvTitulo.setText(libro.getTitulo());
@@ -27,6 +32,9 @@ public class DetalleActivity extends AppCompatActivity {
             }
         });
 
-        viewModel.cargarLibro(getIntent());
+        // Validamos que el Intent tenga el extra antes de cargarlo
+        if (getIntent() != null && getIntent().hasExtra("libro")) {
+            viewModel.cargarLibro(getIntent());
+        }
     }
 }

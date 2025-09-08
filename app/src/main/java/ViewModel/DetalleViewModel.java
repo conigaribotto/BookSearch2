@@ -9,7 +9,7 @@ import Model.Libro;
 
 public class DetalleViewModel extends AndroidViewModel {
 
-    private MutableLiveData<Libro> mutableLibro;
+    private final MutableLiveData<Libro> mutableLibro;
 
     public DetalleViewModel(@NonNull Application application) {
         super(application);
@@ -21,8 +21,8 @@ public class DetalleViewModel extends AndroidViewModel {
     }
 
     public void cargarLibro(Intent intent) {
-        Libro libro = (Libro) intent.getSerializableExtra("libro");
-        if (libro != null) {
+        if (intent != null && intent.hasExtra("libro")) {
+            Libro libro = (Libro) intent.getSerializableExtra("libro");
             mutableLibro.setValue(libro);
         }
     }

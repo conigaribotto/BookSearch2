@@ -1,12 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:padding="20dp"
+    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/etBuscar"
-        android:hint="Ingrese título"
+        android:hint="Ingrese título del libro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -14,12 +15,6 @@
         android:id="@+id/btnBuscar"
         android:text="Buscar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/tvMensaje"
-        android:text=""
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#FF0000"/>
+        android:layout_marginTop="10dp"/>
 </LinearLayout>

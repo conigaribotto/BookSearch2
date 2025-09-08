@@ -2,6 +2,7 @@ package com.example.booksearch;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.booksearch.databinding.ActivityMainBinding;
@@ -17,8 +18,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         setContentView(binding.getRoot());
+
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         binding.btnBuscar.setOnClickListener(v -> {
             String titulo = binding.etBuscar.getText().toString();
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("libro", libro);
                 startActivity(intent);
             } else {
-                binding.tvMensaje.setText("Libro no encontrado");
+                Toast.makeText(this, "Libro no encontrado", Toast.LENGTH_SHORT).show();
             }
         });
     }
